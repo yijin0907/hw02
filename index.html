@@ -18,6 +18,11 @@
     <hr>
     <h1>homework02-3</h1>
     <svg id="hw2-3"></svg>
+    <hr>
+    <h1>homework02-4</h1>
+    <svg id="hw2-4"></svg>
+    <hr>
+    <h1>homework02-5</h1>
     <script>
         // -------------homework02-1-------------
         var svg1 = d3.select('#hw2-1')
@@ -143,6 +148,70 @@
 
         function random(N, M) {
             return Math.ceil(Math.random() * (M - N) + N)
+        }
+
+        // -------------homework02-4-------------
+        d3.json("invoice-taipei.json", function(dataSet) {
+            var count = 0;
+            for (var i = 0; i < dataSet.length; i++) {
+                if (dataSet[i].date === "2016/8/1" && dataSet[i].cid === "A" && dataSet[i].amount > 1000000000) {
+                    d3.select("#hw2-4")
+                        .append("rect")
+                        .attr({
+                            x: 150,
+                            y: 10 + 12 * count,
+                            width: dataSet[i].amount / 100000000,
+                            height: 10,
+                            fill: "red"
+                        });
+                    d3.select("#hw2-4")
+                        .append("text")
+                        .attr({
+                            x: 0,
+                            y: 16 + 12 * count,
+                            "font-size": 9
+                        }).text(dataSet[i].industry);
+                    count++;
+                }
+
+            }
+        });
+    </script>
+    <script>
+        // -------------homework02-5-------------
+        var arr = [85, 60, 99, 49, 77, 82];
+        bind();
+        render();
+
+        function bind() {
+            ///狀態1
+            var selection = d3.select("body")
+                .selectAll("div")
+                .data(arr);
+
+            ///狀態2
+            selection.enter()
+                .append("div");
+
+            ///狀態3
+            selection.exit()
+                .remove();
+        }
+
+        function render() {
+            d3.selectAll("div")
+                .style({
+                    "color": function(d) {
+                        if (d < 70) {
+                            return "red";
+                        } else {
+                            return "black";
+                        }
+                    }
+                })
+                .text(function(d, i) {
+                    return (i + 1) + ":" + d;
+                });
         }
     </script>
 </body>
