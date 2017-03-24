@@ -20,7 +20,7 @@
     <svg id="hw2-3"></svg>
     <hr>
     <h1>homework02-4</h1>
-    <svg id="hw2-4"></svg>
+    <svg id="hw2-4" width="100%"></svg>
     <hr>
     <h1>homework02-5</h1>
     <script>
@@ -158,7 +158,7 @@
                     d3.select("#hw2-4")
                         .append("rect")
                         .attr({
-                            x: 150,
+                            x: 200,
                             y: 10 + 12 * count,
                             width: dataSet[i].amount / 100000000,
                             height: 10,
@@ -169,7 +169,7 @@
                         .attr({
                             x: 0,
                             y: 16 + 12 * count,
-                            "font-size": 5
+                            "font-size": 10
                         }).text(dataSet[i].industry);
                     count++;
                 }
